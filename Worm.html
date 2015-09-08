@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" type="text/css" href="StyleTable.css">
+		<script language="JavaScript" src="JS_libs/Generic.js"> </script>
+		<script language="JavaScript" src="JS_libs/DrawObj.js"> </script>
+		<script language="JavaScript" src="JS_libs/ObjIntegrity.js"> </script>
+		<script language="JavaScript" src="JS_libs/Statistics.js"> </script>
+		<title> Worm </title>
+	</head>
+<body onload="LoadDocu('Please, press any key!')" onkeydown="StartGame()" onresize="ResizeField()">
+    <div id="Content">
+        <div id="GameField">
+            <canvas id="fieldForSnake" width="500" height="500" >
+                Some text
+            </canvas>
+        </div>
+        <div id="GameStatus">
+            <div id="StatusInfo">
+                Length: <text id="len">3</text> pieces <br>
+                Score: <text id="score">0</text> points <br>
+                Time: <text id="time">0</text> sec<br>
+                Speed: <text id="speed">50</text>px/sec <br>
+                <button onclick="Pause()">Pause</button><br>
+                <button onclick="StartGame()">Restart</button><br>
+                <button onclick="CloseWind()">Close</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>

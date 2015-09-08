@@ -1,0 +1,56 @@
+body
+{
+background-image : url(img/backgr.jpg);
+background-position : center;
+background-attachment: fixed;
+background-size: cover;
+margin: 0px;
+}
+
+#GameField
+{
+display: block;
+position: fixed;
+margin-right:0px;
+margin-top: 0px;
+margin-left: 0px;
+height: 100%;
+width: 80%;
+}
+
+#GameStatus
+{
+background-color: #FFFFFF;
+border-style: outset;
+display: block;
+position: fixed;
+right:0px;
+top: 0px;
+bottom: 0px;
+height: 100%;
+width: 20%;
+opacity: 0.78;
+}
+
+#StatusInfo
+{
+font-size: 20px;
+font-style: oblique;
+text-align: center;
+font-family: Georgia;
+line-height: 35px;
+margin-top: 130px;
+}
+
+#StatusInfo  button
+{
+font-size: 20px;
+font-style: oblique;
+font-family: Georgia;
+text-align: center;
+padding: 10px;
+margin: 7px;
+height: 45px;
+width: 120px;
+}
+
