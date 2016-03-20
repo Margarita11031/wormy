@@ -1,15 +1,17 @@
 body {
-    background: url(img/backgr.jpg) fixed center;
+    background-image: url(img/backgr.jpg);
+    background-position: center;
+    background-attachment: fixed;
     background-size: cover;
-    margin: 0;
+    margin: 0px;
 }
 
 #GameField {
     display: block;
     position: fixed;
-    margin-right: 0;
-    margin-top: 0;
-    margin-left: 0;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
     height: 100%;
     width: 80%;
 }
@@ -19,9 +21,9 @@ body {
     border-style: outset;
     display: block;
     position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
     height: 100%;
     width: 20%;
     opacity: 0.78;
@@ -31,7 +33,7 @@ body {
     font-size: 20px;
     font-style: oblique;
     text-align: center;
-    font-family: Georgia, sans-serif;
+    font-family: Georgia;
     line-height: 35px;
     margin-top: 130px;
 }
@@ -39,10 +41,11 @@ body {
 #StatusInfo button {
     font-size: 20px;
     font-style: oblique;
-    font-family: Georgia, sans-serif;
+    font-family: Georgia;
     text-align: center;
     padding: 10px;
     margin: 7px;
     height: 45px;
     width: 120px;
 }
+

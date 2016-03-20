@@ -2,43 +2,50 @@
  * Created by Perl on 01.09.2015.
  */
 
-
-
 //fruit
-var tblFruitPos = [0, 0];
-var nbrFruitWidth = 64, nbrFruitHeight = 64;
-var tblFruitPoints;
-var Fruit = new Image();
-Fruit.src = "img/Fruit.png";
+var objFruit = {
+    tblPos: [0, 0],
+    nbrWidth: 64,
+    nbrHeight: 64,
+    tblPoints: [0],
+    objImg: new Image()
+}
+objFruit.objImg.src = "img/Fruit.png";
+
 
 //worm
+var objWorm = {
+    nbrRadHead: 30,
+    nbrRadBody: 20,
+    nbrRadTail: 12,
+    nbrSegmConnect: 2,
+    tblPos: [],
+    tblChangeDirSpot: [],
+    nbrIdHead: 0
+}
 var intervMoweWorm;
-var nbrRadHead = 30, nbrRadBody = 20, nbrRadTail = 12;
-var nbrSegmConnection = 2;
-var wormPos;
-var changeDirSpot = [], idHead = 0, blnInitGame;
 
 
 function CreateFruit(tblFruitPosTemp) {
     if (!tblFruitPosTemp) {
-        var posX = Math.random() * (canvas.width - nbrFruitWidth),
-            posY = Math.random() * (canvas.height - nbrFruitHeight);
+        var posX = Math.random() * (canvas.width - objFruit.nbrWidth),
+            posY = Math.random() * (canvas.height - objFruit.nbrHeight);
         tblFruitPosTemp = [posX, posY];
-        ctx.drawImage(Fruit, tblFruitPosTemp[0], tblFruitPosTemp[1], nbrFruitWidth, nbrFruitHeight);
-        tblFruitPos = tblFruitPosTemp;
-        tblFruitPoints = GetFruitPoints_tbl();
+        ctx.drawImage(objFruit.objImg, tblFruitPosTemp[0], tblFruitPosTemp[1], objFruit.nbrWidth, objFruit.nbrHeight);
+        objFruit.tblPos = tblFruitPosTemp;
+        objFruit.tblPoints = GetFruitPoints_tbl();
     } else {
-        ctx.drawImage(Fruit, tblFruitPosTemp[0], tblFruitPosTemp[1], nbrFruitWidth, nbrFruitHeight);
-        tblFruitPos = tblFruitPosTemp;
+        ctx.drawImage(objFruit.objImg, tblFruitPosTemp[0], tblFruitPosTemp[1], objFruit.nbrWidth, objFruit.nbrHeight);
+        objFruit.tblPos = tblFruitPosTemp;
     }
 }
 
 function DrawWorm() {
-    for (var i = 0; i < wormPos.length; i++) {
+    for (var i = 0; i < objWorm.tblPos.length; i++) {
         ctx.fillStyle = "#1CB235";
         ctx.beginPath();
-        ctx.moveTo(wormPos[i][0], wormPos[i][1]);
-        ctx.arc(wormPos[i][0], wormPos[i][1], wormPos[i][2], 0, Math.PI * 2, false);
+        ctx.moveTo(objWorm.tblPos[i][0], objWorm.tblPos[i][1]);
+        ctx.arc(objWorm.tblPos[i][0], objWorm.tblPos[i][1], objWorm.tblPos[i][2], 0, Math.PI * 2, false);
         ctx.fill();
     }
 }
@@ -46,12 +53,12 @@ function DrawWorm() {
 
 function MoveWorm() {
     intervMoweWorm = window.setInterval(function () {
-        for (var i = 0; i < wormPos.length; i++) {
+        for (var i = 0; i < objWorm.tblPos.length; i++) {
             moveSegm(i, 1);
         }
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         DrawWorm();
-        CreateFruit(tblFruitPos);
+        CreateFruit(objFruit.tblPos);
 
         if (FruitIntegrity_bln()) {
             AddSegmant_void();
@@ -74,7 +81,7 @@ function ChangeDirection(actKey) {
     if (pause) {
         Pause();
     }
-    var newVal = wormPos[0][3], headDir = wormPos[0][3];
+    var newVal = objWorm.tblPos[0][3], headDir = objWorm.tblPos[0][3];
     switch (actKey.keyCode) {
         case 40:
             newVal = "D";
@@ -101,84 +108,85 @@ function ChangeDirection(actKey) {
     };
 
     var revertDir = function () {
-        for (var i = 0; i < wormPos.length; i++) {
-            switch (wormPos[i][3]) {
+        for (var i = 0; i < objWorm.tblPos.length; i++) {
+            switch (objWorm.tblPos[i][3]) {
                 case "R":
-                    wormPos[i][3] = "L";
+                    objWorm.tblPos[i][3] = "L";
                     break;
                 case "L":
-                    wormPos[i][3] = "R";
+                    objWorm.tblPos[i][3] = "R";
                     break;
                 case "U":
-                    wormPos[i][3] = "D";
+                    objWorm.tblPos[i][3] = "D";
                     break;
                 case "D":
-                    wormPos[i][3] = "U";
+                    objWorm.tblPos[i][3] = "U";
                     break;
                 default:
                     break;
             }
         }
 
-        for (var j = 0; j < changeDirSpot.length; j++) {
-            if (changeDirSpot[j][4] != 0) {
-                changeDirSpot[j][4] = wormPos.length - changeDirSpot[j][4]
+        for (var j = 0; j < objWorm.tblChangeDirSpot.length; j++) {
+            if (objWorm.tblChangeDirSpot[j][4] != 0) {
+                objWorm.tblChangeDirSpot[j][4] = objWorm.tblPos.length - objWorm.tblChangeDirSpot[j][4]
             }
-            var tempDir = changeDirSpot[j][3];
-            changeDirSpot[j][3] = changeDirSpot[j][2];
-            changeDirSpot[j][2] = tempDir;
+            ;
+            tempDir = objWorm.tblChangeDirSpot[j][3];
+            objWorm.tblChangeDirSpot[j][3] = objWorm.tblChangeDirSpot[j][2];
+            objWorm.tblChangeDirSpot[j][2] = tempDir;
             //direction to
-            switch (changeDirSpot[j][2]) {
+            switch (objWorm.tblChangeDirSpot[j][2]) {
                 case "R":
-                    changeDirSpot[j][2] = "L";
+                    objWorm.tblChangeDirSpot[j][2] = "L";
                     break;
                 case "L":
-                    changeDirSpot[j][2] = "R";
+                    objWorm.tblChangeDirSpot[j][2] = "R";
                     break;
                 case "U":
-                    changeDirSpot[j][2] = "D";
+                    objWorm.tblChangeDirSpot[j][2] = "D";
                     break;
                 case "D":
-                    changeDirSpot[j][2] = "U";
+                    objWorm.tblChangeDirSpot[j][2] = "U";
                     break;
                 default:
                     break;
             }
             // direction from
-            switch (changeDirSpot[j][3]) {
+            switch (objWorm.tblChangeDirSpot[j][3]) {
                 case "R":
-                    changeDirSpot[j][3] = "L";
+                    objWorm.tblChangeDirSpot[j][3] = "L";
                     break;
                 case "L":
-                    changeDirSpot[j][3] = "R";
+                    objWorm.tblChangeDirSpot[j][3] = "R";
                     break;
                 case "U":
-                    changeDirSpot[j][3] = "D";
+                    objWorm.tblChangeDirSpot[j][3] = "D";
                     break;
                 case "D":
-                    changeDirSpot[j][3] = "U";
+                    objWorm.tblChangeDirSpot[j][3] = "U";
                     break;
                 default:
                     break;
             }
         }
-    };
+    }
 
     if (checkRevertion(headDir, newVal)) {
 
-        var tempTail = wormPos[wormPos.length - 1];
-        wormPos[wormPos.length - 1] = [wormPos[0][0], wormPos[0][1], nbrRadTail, wormPos[0][3]];
-        wormPos[0] = [tempTail[0], tempTail[1], nbrRadHead, tempTail[3]];
+        var tempTail = objWorm.tblPos[objWorm.tblPos.length - 1];
+        objWorm.tblPos[objWorm.tblPos.length - 1] = [objWorm.tblPos[0][0], objWorm.tblPos[0][1], objWorm.nbrRadTail, objWorm.tblPos[0][3]];
+        objWorm.tblPos[0] = [tempTail[0], tempTail[1], objWorm.nbrRadHead, tempTail[3]];
 
         revertDir();
 
-        moveSegm(wormPos.length - 1, nbrRadHead - nbrRadTail);
-        moveSegm(0, nbrRadHead - nbrRadTail);
+        moveSegm(objWorm.tblPos.length - 1, objWorm.nbrRadHead - objWorm.nbrRadTail);
+        moveSegm(0, objWorm.nbrRadHead - objWorm.nbrRadTail);
 
     } else {
         if (headDir != newVal) {
-            changeDirSpot.push([wormPos[0][0], wormPos[0][1], newVal, headDir, wormPos.length]);
-            //wormPos[0][3] = newVal;
+            objWorm.tblChangeDirSpot.push([objWorm.tblPos[0][0], objWorm.tblPos[0][1], newVal, headDir, objWorm.tblPos.length]);
+            //objWorm.tblPos[0][3] = newVal;
         }
     }
     clearInterval(intervMoweWorm);
@@ -186,16 +194,16 @@ function ChangeDirection(actKey) {
 }
 
 function AddSegmant_void() {
-    if (idHead == 0) {
-        wormPos[wormPos.length - 1] = GetNewSegmPos_tbl(wormPos.length - 2, nbrRadBody);
-        wormPos.push(GetNewSegmPos_tbl(wormPos.length - 1, nbrRadTail));
+    if (objWorm.nbrIdHead == 0) {
+        objWorm.tblPos[objWorm.tblPos.length - 1] = GetNewSegmPos_tbl(objWorm.tblPos.length - 2, objWorm.nbrRadBody);
+        objWorm.tblPos.push(GetNewSegmPos_tbl(objWorm.tblPos.length - 1, objWorm.nbrRadTail));
     } else {
-        wormPos[0] = GetNewSegmPos_tbl(1, nbrRadBody);
-        wormPos.unshift(GetNewSegmPos_tbl(0, nbrRadTail));
+        objWorm.tblPos[0] = GetNewSegmPos_tbl(1, objWorm.nbrRadBody);
+        objWorm.tblPos.unshift(GetNewSegmPos_tbl(0, objWorm.nbrRadTail));
     }
-    for (var i = 0; i < changeDirSpot.length; i++) {
-        if (changeDirSpot[i][4] != 0) {
-            changeDirSpot[i][4]++;
+    for (var i = 0; i < objWorm.tblChangeDirSpot.length; i++) {
+        if (objWorm.tblChangeDirSpot[i][4] != 0) {
+            objWorm.tblChangeDirSpot[i][4]++;
         }
     }
 
@@ -203,60 +211,61 @@ function AddSegmant_void() {
 }
 
 function GetNewSegmPos_tbl(nbrPrevSegm, nbrRad) {
-    var nbrSegmX = wormPos[nbrPrevSegm][0];
-    var nbrSegmY = wormPos[nbrPrevSegm][1];
-    switch ((wormPos[nbrPrevSegm + 1] || wormPos[nbrPrevSegm])[3]) {
+    var nbrSegmX = objWorm.tblPos[nbrPrevSegm][0];
+    var nbrSegmY = objWorm.tblPos[nbrPrevSegm][1];
+    switch ((objWorm.tblPos[nbrPrevSegm + 1] || objWorm.tblPos[nbrPrevSegm])[3]) {
         case "R":
         {
-            nbrSegmX = nbrSegmX - nbrRadBody - nbrRad + nbrSegmConnection;
+            nbrSegmX = nbrSegmX - objWorm.nbrRadBody - nbrRad + objWorm.nbrSegmConnect;
             break;
         }
         case "L":
         {
-            nbrSegmX = nbrSegmX + nbrRadBody + nbrRad - nbrSegmConnection;
+            nbrSegmX = nbrSegmX + objWorm.nbrRadBody + nbrRad - objWorm.nbrSegmConnect;
             break;
         }
         case "U":
         {
-            nbrSegmY = nbrSegmY + nbrRadBody + nbrRad - nbrSegmConnection;
+            nbrSegmY = nbrSegmY + objWorm.nbrRadBody + nbrRad - objWorm.nbrSegmConnect;
             break;
         }
         case "D":
         {
-            nbrSegmY = nbrSegmY - nbrRadBody - nbrRad + nbrSegmConnection;
+            nbrSegmY = nbrSegmY - objWorm.nbrRadBody - nbrRad + objWorm.nbrSegmConnect;
             break;
         }
         default:
             break;
     }
-    return [nbrSegmX, nbrSegmY, nbrRad, ((wormPos[nbrPrevSegm + 1] || wormPos[nbrPrevSegm])[3])];
+    return [nbrSegmX, nbrSegmY, nbrRad, ((objWorm.tblPos[nbrPrevSegm + 1] || objWorm.tblPos[nbrPrevSegm])[3])];
 }
 
 function moveSegm(segmPos, pointsNum) {
     for (var i = 1; i <= pointsNum; i++) {
-        for (var j = 0; j < changeDirSpot.length; j++) {
-            if (changeDirSpot[j][4] != 0) {
-                if (wormPos[segmPos][0] == changeDirSpot[j][0] && wormPos[segmPos][1] == changeDirSpot[j][1]) {
-                    wormPos[segmPos][3] = changeDirSpot[j][2];
-                    changeDirSpot[j][4] -= 1;
-                    if (changeDirSpot[j][4] == 0) {
-                        changeDirSpot.splice(j, 1);
+        for (var j = 0; j < objWorm.tblChangeDirSpot.length; j++) {
+            if (objWorm.tblChangeDirSpot[j][4] != 0) {
+                if (objWorm.tblPos[segmPos][0] == objWorm.tblChangeDirSpot[j][0] && objWorm.tblPos[segmPos][1] == objWorm.tblChangeDirSpot[j][1]) {
+                    objWorm.tblPos[segmPos][3] = objWorm.tblChangeDirSpot[j][2];
+                    objWorm.tblChangeDirSpot[j][4] -= 1;
+                    if (objWorm.tblChangeDirSpot[j][4] == 0) {
+                        objWorm.tblChangeDirSpot.splice(j, 1);
                     }
+                    ;
                 }
             }
         }
-        switch (wormPos[segmPos][3]) {
+        switch (objWorm.tblPos[segmPos][3]) {
             case "R":
-                wormPos[segmPos][0] += 1;
+                objWorm.tblPos[segmPos][0] += 1;
                 break;
             case "L":
-                wormPos[segmPos][0] -= 1;
+                objWorm.tblPos[segmPos][0] -= 1;
                 break;
             case "U":
-                wormPos[segmPos][1] -= 1;
+                objWorm.tblPos[segmPos][1] -= 1;
                 break;
             case "D":
-                wormPos[segmPos][1] += 1;
+                objWorm.tblPos[segmPos][1] += 1;
                 break;
             default:
                 break;

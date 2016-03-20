@@ -1,7 +1,7 @@
 //general
 var pause = false;
 var blnInitGame = false;
-var canvas, ctx, wormPos;
+var canvas, ctx;
 
 
 function ResizeField() {
@@ -28,7 +28,7 @@ function StartGame() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     CreateFruit();
 
-    wormPos = [[130, 32, nbrRadHead, "R"], [82, 32, nbrRadBody, "R"], [44, 32, nbrRadBody, "R"], [14, 32, nbrRadTail, "R"]];
+    objWorm.tblPos = [[130, 32, objWorm.nbrRadHead, "R"], [82, 32, objWorm.nbrRadBody, "R"], [44, 32, objWorm.nbrRadBody, "R"], [14, 32, objWorm.nbrRadTail, "R"]];
     DrawWorm();
     Statistics.GetWormLen_void();
     Statistics.GetSpeed_void();
