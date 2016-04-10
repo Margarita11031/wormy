@@ -2,13 +2,21 @@
  * Created by Perl on 01.09.2015.
  */
 
-function ReachWall_bln() {
-    result = false;
-    result = result || objWorm.tblPos[0][0] + 30 > canvas.width;
-    result = result || objWorm.tblPos[0][1] + 30 > canvas.height;
-    result = result || objWorm.tblPos[0][0] - 30 < 0;
-    result = result || objWorm.tblPos[0][1] - 30 < 0;
-    return result;
+function ReachWall_tbl() {
+    tblPoint = [-1, -1];
+    if (objWorm.tblPos[0][0] + 30 > canvas.width) {
+        tblPoint = [objWorm.tblPos[0][0] + 30, objWorm.tblPos[0][1]];
+    }
+    if (objWorm.tblPos[0][1] + 30 > canvas.height) {
+        tblPoint = [objWorm.tblPos[0][0], objWorm.tblPos[0][1] + 30];
+    }
+    if (objWorm.tblPos[0][0] - 30 < 0) {
+        tblPoint = [objWorm.tblPos[0][0] - 30, objWorm.tblPos[0][1]];
+    }
+    if (objWorm.tblPos[0][1] - 30 < 0) {
+        tblPoint = [objWorm.tblPos[0][0], objWorm.tblPos[0][1] - 30];
+    }
+    return tblPoint;
 }
 
 function FruitIntegrity_bln() {

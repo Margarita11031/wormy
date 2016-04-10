@@ -66,10 +66,10 @@ function MoveWorm() {
             CreateFruit();
         }
 
-        if (ReachWall_bln()) {
+        var tblReachWall = ReachWall_tbl();
+        if (!(tblReachWall[0] == -1 && tblReachWall[0] == -1)) {
             clearInterval(intervMoweWorm);
-            blnInitGame = false;
-            LoadDocu("Game over");
+            Explosion_void(tblReachWall[0], tblReachWall[1], 40);
         }
 
 
@@ -129,9 +129,8 @@ function ChangeDirection(actKey) {
 
         for (var j = 0; j < objWorm.tblChangeDirSpot.length; j++) {
             if (objWorm.tblChangeDirSpot[j][4] != 0) {
-                objWorm.tblChangeDirSpot[j][4] = objWorm.tblPos.length - objWorm.tblChangeDirSpot[j][4]
+                objWorm.tblChangeDirSpot[j][4] = objWorm.tblPos.length - objWorm.tblChangeDirSpot[j][4];
             }
-            ;
             tempDir = objWorm.tblChangeDirSpot[j][3];
             objWorm.tblChangeDirSpot[j][3] = objWorm.tblChangeDirSpot[j][2];
             objWorm.tblChangeDirSpot[j][2] = tempDir;
@@ -195,11 +194,11 @@ function ChangeDirection(actKey) {
 
 function AddSegmant_void() {
     if (objWorm.nbrIdHead == 0) {
-        objWorm.tblPos[objWorm.tblPos.length - 1] = GetNewSegmPos_tbl(objWorm.tblPos.length - 2, objWorm.nbrRadBody);
-        objWorm.tblPos.push(GetNewSegmPos_tbl(objWorm.tblPos.length - 1, objWorm.nbrRadTail));
+        objWorm.tblPos[objWorm.tblPos.length - 1] = GetNewSegmPos_tbl(objWorm.tblPos[objWorm.tblPos.length - 1], objWorm.nbrRadBody, false);
+        objWorm.tblPos.push(GetNewSegmPos_tbl(objWorm.tblPos[objWorm.tblPos.length - 1], objWorm.nbrRadTail, true));
     } else {
-        objWorm.tblPos[0] = GetNewSegmPos_tbl(1, objWorm.nbrRadBody);
-        objWorm.tblPos.unshift(GetNewSegmPos_tbl(0, objWorm.nbrRadTail));
+        objWorm.tblPos[0] = GetNewSegmPos_tbl(objWorm.tblPos[0], objWorm.nbrRadBody, false);
+        objWorm.tblPos.unshift(GetNewSegmPos_tbl(objWorm.tblPos[0], objWorm.nbrRadTail, true));
     }
     for (var i = 0; i < objWorm.tblChangeDirSpot.length; i++) {
         if (objWorm.tblChangeDirSpot[i][4] != 0) {
@@ -210,34 +209,40 @@ function AddSegmant_void() {
     Statistics.GetWormLen_void();
 }
 
-function GetNewSegmPos_tbl(nbrPrevSegm, nbrRad) {
-    var nbrSegmX = objWorm.tblPos[nbrPrevSegm][0];
-    var nbrSegmY = objWorm.tblPos[nbrPrevSegm][1];
-    switch ((objWorm.tblPos[nbrPrevSegm + 1] || objWorm.tblPos[nbrPrevSegm])[3]) {
+function GetNewSegmPos_tbl(tblSegm, nbrRad, blnIsNew) {
+    var nbrSegmX = tblSegm[0];
+    var nbrSegmY = tblSegm[1];
+    var nbrSegmConn = objWorm.nbrSegmConnect;
+    var nbrRevert = 1;
+    if (!blnIsNew) {
+        nbrRevert = -1;
+        nbrSegmConn = 0;
+    }
+    switch (tblSegm[3]) {
         case "R":
         {
-            nbrSegmX = nbrSegmX - objWorm.nbrRadBody - nbrRad + objWorm.nbrSegmConnect;
+            nbrSegmX = nbrSegmX - nbrRevert * tblSegm[2] - nbrRad + nbrSegmConn;
             break;
         }
         case "L":
         {
-            nbrSegmX = nbrSegmX + objWorm.nbrRadBody + nbrRad - objWorm.nbrSegmConnect;
+            nbrSegmX = nbrSegmX + nbrRevert * tblSegm[2] + nbrRad - nbrSegmConn;
             break;
         }
         case "U":
         {
-            nbrSegmY = nbrSegmY + objWorm.nbrRadBody + nbrRad - objWorm.nbrSegmConnect;
+            nbrSegmY = nbrSegmY + nbrRevert * tblSegm[2] + nbrRad - nbrSegmConn;
             break;
         }
         case "D":
         {
-            nbrSegmY = nbrSegmY - objWorm.nbrRadBody - nbrRad + objWorm.nbrSegmConnect;
+            nbrSegmY = nbrSegmY - nbrRevert * tblSegm[2] - nbrRad + nbrSegmConn;
             break;
         }
         default:
             break;
     }
-    return [nbrSegmX, nbrSegmY, nbrRad, ((objWorm.tblPos[nbrPrevSegm + 1] || objWorm.tblPos[nbrPrevSegm])[3])];
+    return [nbrSegmX, nbrSegmY, nbrRad, tblSegm[3]];
 }
 
 function moveSegm(segmPos, pointsNum) {
@@ -271,4 +276,9 @@ function moveSegm(segmPos, pointsNum) {
                 break;
         }
     }
+}
+function GameOver_void() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    blnInitGame = false;
+    LoadDocu("Game over");
 }
