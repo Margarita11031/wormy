@@ -52,12 +52,49 @@ function GetHeadPoints_tbl() {
     var tblPointsArray = [];
     // X line
     for (var i = objWorm.tblPos[objWorm.nbrIdHead][0] - objWorm.tblPos[objWorm.nbrIdHead][2]; i < objWorm.tblPos[objWorm.nbrIdHead][0] + objWorm.tblPos[objWorm.nbrIdHead][2]; i++) {
-        tblPointsArray.unshift([Math.round(i), Math.round(objWorm.tblPos[objWorm.nbrIdHead][1])]);
+        tblPointsArray.push([Math.round(i), Math.round(objWorm.tblPos[objWorm.nbrIdHead][1])]);
     }
     //Y line
     for (var j = objWorm.tblPos[objWorm.nbrIdHead][1] - objWorm.tblPos[objWorm.nbrIdHead][2]; j < objWorm.tblPos[objWorm.nbrIdHead][1] + objWorm.tblPos[objWorm.nbrIdHead][2]; j++) {
-        tblPointsArray.unshift([Math.round(objWorm.tblPos[objWorm.nbrIdHead][0]), Math.round(j)]);
+        tblPointsArray.push([Math.round(objWorm.tblPos[objWorm.nbrIdHead][0]), Math.round(j)]);
     }
     return tblPointsArray;
 
+}
+
+
+function GetBodyPoints_tbl() {
+    var tblPointsArray = [];
+    var segmentsCount = objWorm.tblPos.length;
+    while (segmentsCount--) {
+        // X line
+        var intStartPoint = objWorm.tblPos[segmentsCount][0] - objWorm.tblPos[segmentsCount][2] + objWorm.nbrSegmConnect;
+        var intStopPoint = objWorm.tblPos[segmentsCount][0] + objWorm.tblPos[segmentsCount][2] - objWorm.nbrSegmConnect;
+        for (var i = intStartPoint; i < intStopPoint; i++) {
+            tblPointsArray.push([Math.round(i), Math.round(objWorm.tblPos[segmentsCount][1])]);
+        }
+        //Y line
+        intStartPoint = objWorm.tblPos[segmentsCount][1] - objWorm.tblPos[segmentsCount][2] + objWorm.nbrSegmConnect;
+        intStopPoint = objWorm.tblPos[segmentsCount][1] + objWorm.tblPos[segmentsCount][2] - objWorm.nbrSegmConnect;
+        for (var j = intStartPoint; j < intStopPoint; j++) {
+            if (Math.round(j) != Math.round(objWorm.tblPos[segmentsCount][1])) {
+                tblPointsArray.push([Math.round(objWorm.tblPos[segmentsCount][0]), Math.round(j)]);
+            }
+        }
+    }
+    return tblPointsArray;
+}
+
+function WormIntegrity_tbl() {
+    var tblPoint = [-1, -1];
+    var tblWormPoints = GetBodyPoints_tbl();
+    var nbrLen = tblWormPoints.length;
+    for (var m = 0; m < (nbrLen - 1); m++) {
+        for (var j = m + 1; j < nbrLen; j++) {
+            if (tblWormPoints[m][0] == tblWormPoints[j][0] && tblWormPoints[m][1] == tblWormPoints[j][1]) {
+                tblPoint = [tblWormPoints[m][0], tblWormPoints[m][1]];
+            }
+        }
+    }
+    return tblPoint;
 }

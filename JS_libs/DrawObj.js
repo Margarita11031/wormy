@@ -72,6 +72,12 @@ function MoveWorm() {
             Explosion_void(tblReachWall[0], tblReachWall[1], 40);
         }
 
+        var tblWormIntegrity = WormIntegrity_tbl();
+        if (!(tblWormIntegrity[0] == -1 && tblWormIntegrity[0] == -1)) {
+            clearInterval(intervMoweWorm);
+            Explosion_void(tblWormIntegrity[0], tblWormIntegrity[1], 40);
+        }
+
 
     }, 1000 / Statistics.intSpeed);
 
