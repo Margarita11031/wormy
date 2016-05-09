@@ -49,3 +49,8 @@ body {
     width: 120px;
 }
 
+#naviMap {
+    position: absolute;
+    opacity: 0;
+}
+

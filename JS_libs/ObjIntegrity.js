@@ -68,14 +68,14 @@ function GetBodyPoints_tbl() {
     var segmentsCount = objWorm.tblPos.length;
     while (segmentsCount--) {
         // X line
-        var intStartPoint = objWorm.tblPos[segmentsCount][0] - objWorm.tblPos[segmentsCount][2] + objWorm.nbrSegmConnect;
-        var intStopPoint = objWorm.tblPos[segmentsCount][0] + objWorm.tblPos[segmentsCount][2] - objWorm.nbrSegmConnect;
+        var intStartPoint = objWorm.tblPos[segmentsCount][0] - objWorm.tblPos[segmentsCount][2] + objWorm.nbrSegmConnect + 2;
+        var intStopPoint = objWorm.tblPos[segmentsCount][0] + objWorm.tblPos[segmentsCount][2] - objWorm.nbrSegmConnect - 2;
         for (var i = intStartPoint; i < intStopPoint; i++) {
             tblPointsArray.push([Math.round(i), Math.round(objWorm.tblPos[segmentsCount][1])]);
         }
         //Y line
-        intStartPoint = objWorm.tblPos[segmentsCount][1] - objWorm.tblPos[segmentsCount][2] + objWorm.nbrSegmConnect;
-        intStopPoint = objWorm.tblPos[segmentsCount][1] + objWorm.tblPos[segmentsCount][2] - objWorm.nbrSegmConnect;
+        intStartPoint = objWorm.tblPos[segmentsCount][1] - objWorm.tblPos[segmentsCount][2] + objWorm.nbrSegmConnect + 2;
+        intStopPoint = objWorm.tblPos[segmentsCount][1] + objWorm.tblPos[segmentsCount][2] - objWorm.nbrSegmConnect - 2;
         for (var j = intStartPoint; j < intStopPoint; j++) {
             if (Math.round(j) != Math.round(objWorm.tblPos[segmentsCount][1])) {
                 tblPointsArray.push([Math.round(objWorm.tblPos[segmentsCount][0]), Math.round(j)]);
