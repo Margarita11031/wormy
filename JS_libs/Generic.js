@@ -17,6 +17,13 @@ function LoadDocu(text) {
     ctx.font = 'oblique 50pt Georgia';
     ctx.fillStyle = "#FFFFFF";
     ctx.fillText(text, canvas.width / 2 - 230, canvas.height / 2 - 70);
+    //prepare navigation map
+    document.getElementById("naviImg").setAttribute("width", canvas.width);
+    document.getElementById("naviImg").setAttribute("height", canvas.height);
+    document.getElementById("mapLeft").setAttribute("coords", "0,0," + canvas.width / 2 + "," + canvas.height / 2 + ",0," + canvas.height);
+    document.getElementById("mapTop").setAttribute("coords", "0,0," + canvas.width + ",0," + canvas.width / 2 + "," + canvas.height / 2);
+    document.getElementById("mapRight").setAttribute("coords", canvas.width + ",0," + canvas.width + "," + canvas.height + "," + canvas.width / 2 + "," + canvas.height / 2);
+    document.getElementById("mapBottom").setAttribute("coords", "0," + canvas.height + "," + canvas.width / 2 + "," + canvas.height / 2 + "," + canvas.width + "," + canvas.height);
 
     window.setTimeout(Statistics.IncreaseTimer_void(), 1000);
 }
@@ -34,7 +41,11 @@ function StartGame() {
     Statistics.GetSpeed_void();
 
     document.getElementsByTagName("body")[0].removeAttribute("onkeydown");
-    document.getElementsByTagName("body")[0].setAttribute("onkeydown", "ChangeDirection(event)");
+    document.getElementsByTagName("body")[0].setAttribute("onkeydown", "SetDirection_str(event)");
+    document.getElementById("mapLeft").setAttribute("onclick", "SetOnClickDirection_str(event)");
+    document.getElementById("mapTop").setAttribute("onclick", "SetOnClickDirection_str(event)");
+    document.getElementById("mapRight").setAttribute("onclick", "SetOnClickDirection_str(event)");
+    document.getElementById("mapBottom").setAttribute("onclick", "SetOnClickDirection_str(event)");
     blnInitGame = true;
 }
 

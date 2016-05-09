@@ -9,7 +9,8 @@ var objFruit = {
     nbrHeight: 64,
     tblPoints: [0],
     objImg: new Image()
-}
+};
+
 objFruit.objImg.src = "img/Fruit.png";
 
 
@@ -22,7 +23,7 @@ var objWorm = {
     tblPos: [],
     tblChangeDirSpot: [],
     nbrIdHead: 0
-}
+};
 var intervMoweWorm;
 
 
@@ -83,11 +84,32 @@ function MoveWorm() {
 
 }
 
-function ChangeDirection(actKey) {
-    if (pause) {
-        Pause();
+function SetOnClickDirection_str(event) {
+    var newVal = "D";
+    var tagID = event.target.id;
+    event.stopPropagation();
+    switch (tagID) {
+        case "mapBottom":
+            newVal = "D";
+            break;
+        case "mapRight":
+            newVal = "R";
+            break;
+        case "mapTop":
+            newVal = "U";
+            break;
+        case "mapLeft":
+            newVal = "L";
+            break;
+        default:
+            return;
     }
-    var newVal = objWorm.tblPos[0][3], headDir = objWorm.tblPos[0][3];
+    ChangeDirection_void(newVal);
+    return newVal;
+}
+
+function SetDirection_str(actKey) {
+    var newVal = objWorm.tblPos[0][3];
     switch (actKey.keyCode) {
         case 40:
             newVal = "D";
@@ -105,6 +127,15 @@ function ChangeDirection(actKey) {
             return;
     }
 
+    ChangeDirection_void(newVal);
+    return newVal;
+}
+
+function ChangeDirection_void(strDir) {
+    if (pause) {
+        Pause();
+    }
+    var headDir = objWorm.tblPos[0][3];
     var checkRevertion = function (curDir, newDir) {
         var resRevertion = (curDir == "R" && newDir == "L");
         resRevertion = resRevertion || (curDir == "L" && newDir == "R");
@@ -137,7 +168,7 @@ function ChangeDirection(actKey) {
             if (objWorm.tblChangeDirSpot[j][4] != 0) {
                 objWorm.tblChangeDirSpot[j][4] = objWorm.tblPos.length - objWorm.tblChangeDirSpot[j][4];
             }
-            tempDir = objWorm.tblChangeDirSpot[j][3];
+            var tempDir = objWorm.tblChangeDirSpot[j][3];
             objWorm.tblChangeDirSpot[j][3] = objWorm.tblChangeDirSpot[j][2];
             objWorm.tblChangeDirSpot[j][2] = tempDir;
             //direction to
@@ -175,9 +206,9 @@ function ChangeDirection(actKey) {
                     break;
             }
         }
-    }
+    };
 
-    if (checkRevertion(headDir, newVal)) {
+    if (checkRevertion(headDir, strDir)) {
 
         var tempTail = objWorm.tblPos[objWorm.tblPos.length - 1];
         objWorm.tblPos[objWorm.tblPos.length - 1] = [objWorm.tblPos[0][0], objWorm.tblPos[0][1], objWorm.nbrRadTail, objWorm.tblPos[0][3]];
@@ -189,14 +220,15 @@ function ChangeDirection(actKey) {
         moveSegm(0, objWorm.nbrRadHead - objWorm.nbrRadTail);
 
     } else {
-        if (headDir != newVal) {
-            objWorm.tblChangeDirSpot.push([objWorm.tblPos[0][0], objWorm.tblPos[0][1], newVal, headDir, objWorm.tblPos.length]);
-            //objWorm.tblPos[0][3] = newVal;
+        if (headDir != strDir) {
+            objWorm.tblChangeDirSpot.push([objWorm.tblPos[0][0], objWorm.tblPos[0][1], strDir, headDir, objWorm.tblPos.length]);
+            //objWorm.tblPos[0][3] = strDir;
         }
     }
     clearInterval(intervMoweWorm);
     MoveWorm();
 }
+
 
 function AddSegmant_void() {
     if (objWorm.nbrIdHead == 0) {
@@ -261,7 +293,6 @@ function moveSegm(segmPos, pointsNum) {
                     if (objWorm.tblChangeDirSpot[j][4] == 0) {
                         objWorm.tblChangeDirSpot.splice(j, 1);
                     }
-                    ;
                 }
             }
         }
