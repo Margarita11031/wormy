@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -10,7 +10,8 @@
     <script language="JavaScript" src="JS_libs/Statistics.js"></script>
     <title> Worm </title>
 </head>
-<body onload="LoadDocu('Please, press any key!')" onkeydown="StartGame()" onresize="ResizeField()">
+<body onload="LoadDocu('Please, press any key!')" onkeydown="StartGame()" onclick="StartGame()"
+      onresize="ResizeField()">
 <div id="Content">
     <div id="GameField">
         <canvas id="fieldForSnake" width="500" height="500">
@@ -38,6 +39,17 @@
             <button onclick="CloseWind()">Close</button>
         </div>
     </div>
+</div>
+
+<div id="naviMap">
+    <img id="naviImg" src="img/backgr.jpg" width="400" height="400" alt="WormNavi" usemap="#Navigation"
+         hidefocus="true"></div>
+<map id="Navigation" name="Navigation">
+    <area id="mapLeft" shape="poly" coords="0,0,200,200,0,400" nohref alt="Left">
+    <area id="mapTop" shape="poly" coords="0,0,400,0,200,200" nohref alt="Top">
+    <area id="mapRight" shape="poly" coords="400,0,400,400,200,200" nohref alt="Right">
+    <area id="mapBottom" shape="poly" coords="0,400,200,200,400,400" nohref alt="Bottom">
+</map>
 </div>
 </body>
 
