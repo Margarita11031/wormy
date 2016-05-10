@@ -87,7 +87,7 @@ function MoveWorm() {
 function SetOnClickDirection_str(event) {
     var newVal = "D";
     var tagID = event.target.id;
-    event.stopPropagation();
+    //event.stopPropagation();
     switch (tagID) {
         case "mapBottom":
             newVal = "D";

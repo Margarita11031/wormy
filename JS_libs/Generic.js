@@ -5,14 +5,14 @@ var canvas, ctx;
 
 
 function ResizeField() {
-    canvas.width = document.documentElement.clientWidth * 0.8 - 6;
+    canvas.width = document.documentElement.clientWidth;
     canvas.height = document.documentElement.clientHeight;
 }
 
 function LoadDocu(text) {
     canvas = document.getElementById("fieldForSnake");
     ctx = canvas.getContext('2d');
-    canvas.width = document.documentElement.clientWidth * 0.8 - 6;
+    canvas.width = document.documentElement.clientWidth;
     canvas.height = document.documentElement.clientHeight;
     ctx.font = 'oblique 50pt Georgia';
     ctx.fillStyle = "#FFFFFF";
@@ -42,6 +42,7 @@ function StartGame() {
 
     document.getElementsByTagName("body")[0].removeAttribute("onkeydown");
     document.getElementsByTagName("body")[0].setAttribute("onkeydown", "SetDirection_str(event)");
+    document.getElementsByTagName("body")[0].removeAttribute("onclick");
     document.getElementById("mapLeft").setAttribute("onclick", "SetOnClickDirection_str(event)");
     document.getElementById("mapTop").setAttribute("onclick", "SetOnClickDirection_str(event)");
     document.getElementById("mapRight").setAttribute("onclick", "SetOnClickDirection_str(event)");

@@ -4,6 +4,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
     margin: 0px;
+    overflow: hidden;
 }
 
 #GameField {
@@ -13,7 +14,7 @@ body {
     margin-top: 0px;
     margin-left: 0px;
     height: 100%;
-    width: 80%;
+    width: 100%;
 }
 
 #GameStatus {
@@ -21,7 +22,7 @@ body {
     border-style: outset;
     display: block;
     position: fixed;
-    right: 0px;
+    left: 100%;
     top: 0px;
     bottom: 0px;
     height: 100%;
@@ -47,6 +48,13 @@ body {
     margin: 7px;
     height: 45px;
     width: 120px;
+}
+
+#callMenu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
 }
 
 #naviMap {
