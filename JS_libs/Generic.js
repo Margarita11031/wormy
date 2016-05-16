@@ -14,7 +14,7 @@ function ResizeField() {
 }
 
 function LoadDocu(text) {
-    document.fullscreenElement();
+    window.scrollTo(0, 1);
     canvas = document.getElementById("fieldForSnake");
     ctx = canvas.getContext('2d');
     canvas.width = document.documentElement.clientWidth;
