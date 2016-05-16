@@ -318,4 +318,6 @@ function GameOver_void() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     blnInitGame = false;
     LoadDocu("Game over");
+    setTimeout(ShareResults_void(), 5000)
+
 }

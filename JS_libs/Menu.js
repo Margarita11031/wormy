@@ -3,8 +3,10 @@
  */
 
 var MenuOpened = false;
-function CallMenu_void() {
+function CallMenu_void(event) {
+    event.stopPropagation();
     if (!MenuOpened) {
+        Pause();
         document.getElementById("callMenu").setAttribute("src", "img/icon_back.png");
         OpenMenu_void();
         MenuOpened = true;
@@ -12,16 +14,13 @@ function CallMenu_void() {
         document.getElementById("callMenu").setAttribute("src", "img/icon_menu.png");
         CloseMenu_void();
         MenuOpened = false;
+        Pause();
     }
-
 }
 
 
 function OpenMenu_void() {
-
     //document.getElementById("GameStatus").setAttribute("width", "SetOnClickDirection_str(event)");
-
-
     var nbrDocWidth = parseInt(document.body.clientWidth);
     var nbrWidth = Math.round(nbrDocWidth * 0.2);
     var nbrCurWidth = 1;

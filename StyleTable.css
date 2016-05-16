@@ -3,16 +3,17 @@ body {
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
-    margin: 0px;
+    margin: 0;
     overflow: hidden;
+    font-family: lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 23px;
 }
-
 #GameField {
     display: block;
     position: fixed;
-    margin-right: 0px;
-    margin-top: 0px;
-    margin-left: 0px;
+    margin-right: 0;
+    margin-top: 0;
+    margin-left: 0;
     height: 100%;
     width: 100%;
 }
@@ -23,42 +24,59 @@ body {
     display: block;
     position: fixed;
     left: 100%;
-    top: 0px;
-    bottom: 0px;
+    top: 0;
+    bottom: 0;
     height: 100%;
     width: 20%;
     opacity: 0.78;
 }
 
 #StatusInfo {
-    font-size: 20px;
-    font-style: oblique;
     text-align: center;
-    font-family: Georgia;
     line-height: 35px;
     margin-top: 130px;
+    padding: 20px;
+    height: 70%;
+    width: 85%;
 }
 
 #StatusInfo button {
-    font-size: 20px;
-    font-style: oblique;
-    font-family: Georgia;
     text-align: center;
-    padding: 10px;
+    font-size: 27px;
+    padding: 20px;
     margin: 7px;
-    height: 45px;
-    width: 120px;
+    height: 15%;
+    width: 85%;
 }
 
 #callMenu {
     position: absolute;
     top: 20px;
     right: 20px;
-    z-index: 2;
+    z-index: 3;
 }
 
 #naviMap {
     position: absolute;
     opacity: 0;
+}
+
+#customMessage {
+    z-index: 2;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    font-size: 50pt;
+    color: white;
+    text-align: center;
+}
+
+#customMessage p {
+    margin: 10px;
 }
 
