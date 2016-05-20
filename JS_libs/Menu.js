@@ -22,7 +22,7 @@ function CallMenu_void(event) {
 function OpenMenu_void() {
     //document.getElementById("GameStatus").setAttribute("width", "SetOnClickDirection_str(event)");
     var nbrDocWidth = parseInt(document.body.clientWidth);
-    var nbrWidth = Math.round(nbrDocWidth * 0.2);
+    var nbrWidth = 380;
     var nbrCurWidth = 1;
     var openMenu = window.setInterval(function () {
         document.getElementById("GameStatus").style.left = nbrDocWidth - nbrCurWidth + "px";
@@ -31,7 +31,7 @@ function OpenMenu_void() {
         if (nbrCurWidth >= nbrWidth) {
             clearInterval(openMenu);
         }
-    }, 5);
+    }, 3);
 }
 
 function CloseMenu_void() {
@@ -44,5 +44,5 @@ function CloseMenu_void() {
         if (nbrWidth >= nbrDocWidth) {
             clearInterval(closeMenu);
         }
-    }, 5);
+    }, 3);
 }

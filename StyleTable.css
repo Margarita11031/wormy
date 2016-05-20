@@ -35,10 +35,9 @@ body {
 #StatusInfo {
     text-align: center;
     line-height: 35px;
-    margin-top: 130px;
+    margin-top: 330px;
     padding: 20px;
     height: 70%;
-    width: 85%;
 }
 
 #StatusInfo button {
