@@ -38,6 +38,7 @@ body {
     margin-top: 330px;
     padding: 20px;
     height: 70%;
+    width: 350px;
 }
 
 #StatusInfo button {
@@ -51,8 +52,8 @@ body {
 
 #callMenu {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 40px;
+    right: 40px;
     z-index: 5;
 }
 #GameStatus {
