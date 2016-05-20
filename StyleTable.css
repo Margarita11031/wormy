@@ -94,7 +94,7 @@ body {
 }
 
 #customMessage {
-    z-index: 9;
+    z-index: 4;
     position: absolute;
     margin: auto;
     left: 0;

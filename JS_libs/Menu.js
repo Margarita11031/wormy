@@ -27,7 +27,7 @@ function OpenMenu_void() {
     var openMenu = window.setInterval(function () {
         document.getElementById("GameStatus").style.left = nbrDocWidth - nbrCurWidth + "px";
 
-        nbrCurWidth++;
+        nbrCurWidth = nbrCurWidth+2;
         if (nbrCurWidth >= nbrWidth) {
             clearInterval(openMenu);
         }
@@ -40,7 +40,7 @@ function CloseMenu_void() {
     var closeMenu = window.setInterval(function () {
         document.getElementById("GameStatus").style.left = nbrWidth + "px";
 
-        nbrWidth++;
+        nbrWidth = nbrWidth+2;
         if (nbrWidth >= nbrDocWidth) {
             clearInterval(closeMenu);
         }
