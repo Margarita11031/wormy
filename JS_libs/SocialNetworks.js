@@ -24,7 +24,7 @@ window.fbAsyncInit = function() {
 function ShareOnFacebook_void(){
     FB.ui({
         method: 'share',
-        href: 'https://developers.facebook.com/docs/'
+        href: 'https://www.youtube.com/watch?v=TR3Vdo5etCQ&index=10&list=RDZwAd_ag9Q0E'
     }, function(response){
         // Debug response (optional)
         console.log(response);
