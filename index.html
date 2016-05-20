@@ -24,7 +24,7 @@
     <div id="GameStatus">
         <div id="StatusInfo">
             Length:
-            <text id="len">3</text>
+            <text id="len">0</text>
             pieces <br>
             Score:
             <text id="score">0</text>
@@ -33,13 +33,11 @@
             <text id="time">0</text>
             sec<br>
             Speed:
-            <text id="speed">50</text>
-            px/sec <br>
-            <button onclick="Pause()">Pause</button>
-            <br>
-            <button onclick="StartGame()">Restart</button>
-            <br>
-            <button onclick="CloseWind()">Close</button>
+            <text id="speed">0</text>
+            px/sec <br><br>
+            <button onclick="Pause()">Pause</button><br>
+            <button onclick="StartGame()">Restart</button><br>
+            <button onclick="CloseWind()">Close</button><br>
         </div>
     </div>
 
@@ -47,14 +45,10 @@
 </div>
 
 <div id="naviMap">
-    <img id="naviImg" src="img/backgr.jpg" width="400" height="400" alt="WormNavi" usemap="#Navigation"
-         hidefocus="true"></div>
-<map id="Navigation" name="Navigation">
-    <area id="mapLeft" shape="poly" coords="0,0,200,200,0,400" nohref alt="Left">
-    <area id="mapTop" shape="poly" coords="0,0,400,0,200,200" nohref alt="Top">
-    <area id="mapRight" shape="poly" coords="400,0,400,400,200,200" nohref alt="Right">
-    <area id="mapBottom" shape="poly" coords="0,400,200,200,400,400" nohref alt="Bottom">
-</map>
+    <img id="naviLeft" src="img/icon_left.png" width="15%" alt="Left"/>
+    <img id="naviRight" src="img/icon_right.png" width="15%" alt="Right"/>
+    <img id="naviTop" src="img/icon_top.png" width="15%" alt="Up"/>
+    <img id="naviBottom" src="img/icon_bottom.png" width="15%" alt="Down"/>
 </div>
 
 <img id="callMenu" src="img/icon_menu.png" width="15%" alt="OpenMenu" onclick="CallMenu_void(event)">

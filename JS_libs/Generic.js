@@ -7,10 +7,6 @@ var canvas, ctx;
 function ResizeField() {
     canvas.width = document.documentElement.clientWidth;
     canvas.height = document.documentElement.clientHeight;
-    document.getElementById("mapLeft").setAttribute("coords", "0,0," + canvas.width / 2 + "," + canvas.height / 2 + ",0," + canvas.height);
-    document.getElementById("mapTop").setAttribute("coords", "0,0," + canvas.width + ",0," + canvas.width / 2 + "," + canvas.height / 2);
-    document.getElementById("mapRight").setAttribute("coords", canvas.width + ",0," + canvas.width + "," + canvas.height + "," + canvas.width / 2 + "," + canvas.height / 2);
-    document.getElementById("mapBottom").setAttribute("coords", "0," + canvas.height + "," + canvas.width / 2 + "," + canvas.height / 2 + "," + canvas.width + "," + canvas.height);
 }
 
 function LoadDocu(text) {
@@ -19,18 +15,7 @@ function LoadDocu(text) {
     ctx = canvas.getContext('2d');
     canvas.width = document.documentElement.clientWidth;
     canvas.height = document.documentElement.clientHeight;
-    //ctx.font = 'oblique 50pt Georgia';
-    //ctx.fillStyle = "#FFFFFF";
-    //ctx.fillText(text, canvas.width / 2 - 230, canvas.height / 2 - 70);
-    //prepare navigation map
     document.getElementById("customMessage").innerHTML = "<p id='messageText'>" + text + "</p>";
-    document.getElementById("naviImg").setAttribute("width", canvas.width);
-    document.getElementById("naviImg").setAttribute("height", canvas.height);
-    document.getElementById("mapLeft").setAttribute("coords", "0,0," + canvas.width / 2 + "," + canvas.height / 2 + ",0," + canvas.height);
-    document.getElementById("mapTop").setAttribute("coords", "0,0," + canvas.width + ",0," + canvas.width / 2 + "," + canvas.height / 2);
-    document.getElementById("mapRight").setAttribute("coords", canvas.width + ",0," + canvas.width + "," + canvas.height + "," + canvas.width / 2 + "," + canvas.height / 2);
-    document.getElementById("mapBottom").setAttribute("coords", "0," + canvas.height + "," + canvas.width / 2 + "," + canvas.height / 2 + "," + canvas.width + "," + canvas.height);
-
     window.setTimeout(Statistics.IncreaseTimer_void(), 1000);
 }
 
@@ -48,13 +33,36 @@ function StartGame() {
     Statistics.GetSpeed_void();
 
     document.getElementsByTagName("body")[0].removeAttribute("onkeydown");
-    document.getElementsByTagName("body")[0].setAttribute("onkeydown", "SetDirection_str(event)");
     document.getElementsByTagName("body")[0].removeAttribute("onclick");
-    document.getElementById("mapLeft").setAttribute("onclick", "SetOnClickDirection_str(event)");
-    document.getElementById("mapTop").setAttribute("onclick", "SetOnClickDirection_str(event)");
-    document.getElementById("mapRight").setAttribute("onclick", "SetOnClickDirection_str(event)");
-    document.getElementById("mapBottom").setAttribute("onclick", "SetOnClickDirection_str(event)");
     blnInitGame = true;
+    ActivateMove_void();
+}
+
+function ActivateMove_void(){
+    if(pause || !blnInitGame){
+        document.getElementsByTagName("body")[0].removeAttribute("onkeydown");
+        document.getElementById("naviLeft").removeAttribute("onclick");
+        document.getElementById("naviLeft").style.display = 'none';
+        document.getElementById("naviTop").removeAttribute("onclick");
+        document.getElementById("naviTop").style.display = 'none';
+        document.getElementById("naviRight").removeAttribute("onclick");
+        document.getElementById("naviRight").style.display = 'none';
+        document.getElementById("naviBottom").removeAttribute("onclick");
+        document.getElementById("naviBottom").style.display = 'none';
+
+    }else{
+        document.getElementsByTagName("body")[0].setAttribute("onkeydown", "SetDirection_str(event)");
+        document.getElementById("naviLeft").setAttribute("onclick", 'ChangeDirection_void("L")');
+        document.getElementById("naviLeft").style.display = 'block';
+        document.getElementById("naviTop").setAttribute("onclick", 'ChangeDirection_void("U")');
+        document.getElementById("naviTop").style.display = 'block';
+        document.getElementById("naviRight").setAttribute("onclick", 'ChangeDirection_void("R")');
+        document.getElementById("naviRight").style.display = 'block';
+        document.getElementById("naviBottom").setAttribute("onclick", 'ChangeDirection_void("D")');
+        document.getElementById("naviBottom").style.display = 'block';
+
+    }
+
 }
 
 
@@ -78,9 +86,9 @@ function ShareResults_void() {
     document.getElementById("customMessage").innerHTML = "<p>Length: " + objWorm.tblPos.length + " pieces</p>" +
         "<p>Speed:" + Statistics.intSpeed + " px/sec</p>" +
         "<p id='messageText'>Share you result</p>" +
-        "<img id='facebook' src='img/icon_facebook.png' width='8%' alt='facebook' onclick='ShareOnFacebook_void()'/>" + " " +
-        "<img id='twitter' src='img/icon_twitter.png' width='8%' alt='twitter'/>" + " " +
-        "<img id='google' src='img/icon_google.png' width='8%' alt='google'/>";
+        "<img id='facebook' src='img/icon_facebook.png' width='15%' alt='facebook' onclick='ShareOnFacebook_void()'/>" + " " +
+        "<img id='twitter' src='img/icon_twitter.png' width='15%' alt='twitter'/>" + " " +
+        "<img id='google' src='img/icon_google.png' width='15%' alt='google'/>";
 
 }
 

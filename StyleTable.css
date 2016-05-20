@@ -6,7 +6,7 @@ body {
     margin: 0;
     overflow: hidden;
     font-family: lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 32px;
+    font-size: 36px;
 }
 #GameField {
     z-index: 3;
@@ -28,14 +28,13 @@ body {
     top: 0;
     bottom: 0;
     height: 100%;
-    width: 20%;
     opacity: 0.78;
 }
 
 #StatusInfo {
     text-align: center;
     line-height: 35px;
-    margin-top: 330px;
+    margin-top: 310px;
     padding: 20px;
     height: 70%;
     width: 350px;
@@ -54,16 +53,44 @@ body {
     position: absolute;
     top: 40px;
     right: 40px;
-    z-index: 5;
+    z-index: 15;
 }
 #GameStatus {
-    z-index: 5;
+    z-index: 15;
 }
 
-#naviMap {
-    z-index: 4;
+
+#naviLeft {
+    z-index: 5;
+    left: 0;
     position: absolute;
-    opacity: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+}
+#naviTop {
+    z-index: 5;
+    top: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+}
+#naviRight {
+    z-index: 5;
+    right: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+}
+#naviBottom {
+    z-index: 5;
+    bottom: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
 }
 
 #customMessage {
