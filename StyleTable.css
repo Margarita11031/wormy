@@ -1,9 +1,8 @@
 body {
     background-image: url(img/backgr.jpg);
     background-repeat: no-repeat;
-    background-position: center;
     background-attachment: fixed;
-    background-size: cover;
+    background-position: center;
     margin: 0;
     overflow: hidden;
     font-family: lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -35,7 +34,7 @@ body {
 #StatusInfo {
     text-align: center;
     line-height: 35px;
-    margin-top: 85pt;
+    margin-top: 95pt;
     padding: 20px;
     height: 70%;
     width: 300px;
