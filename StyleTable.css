@@ -6,7 +6,7 @@ body {
     margin: 0;
     overflow: hidden;
     font-family: lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 36px;
+    font-size: 150%;
 }
 #GameField {
     z-index: 3;
@@ -34,25 +34,25 @@ body {
 #StatusInfo {
     text-align: center;
     line-height: 35px;
-    margin-top: 310px;
+    margin-top: 15%;
     padding: 20px;
     height: 70%;
-    width: 350px;
+    width: 300px;
 }
 
 #StatusInfo button {
     text-align: center;
-    font-size: 32px;
-    padding: 20px;
-    margin: 7px;
+    font-size: 100%;
+    padding: 10px;
+    margin: 5px;
     height: 15%;
-    width: 85%;
+    width: 70%;
 }
 
 #callMenu {
     position: absolute;
-    top: 40px;
-    right: 40px;
+    top: 3%;
+    right: 3%;
     z-index: 15;
 }
 #GameStatus {
@@ -101,9 +101,9 @@ body {
     bottom: 0;
     right: 0;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-30%);
     display: block;
-    font-size: 80pt;
+    font-size: 150%;
     color: white;
     text-align: center;
     text-shadow: 0px 0px 20px #000000;

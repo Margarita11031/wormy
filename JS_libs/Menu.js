@@ -22,7 +22,7 @@ function CallMenu_void(event) {
 function OpenMenu_void() {
     //document.getElementById("GameStatus").setAttribute("width", "SetOnClickDirection_str(event)");
     var nbrDocWidth = parseInt(document.body.clientWidth);
-    var nbrWidth = 380;
+    var nbrWidth = 300;
     var nbrCurWidth = 1;
     var openMenu = window.setInterval(function () {
         document.getElementById("GameStatus").style.left = nbrDocWidth - nbrCurWidth + "px";
