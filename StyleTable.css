@@ -7,6 +7,12 @@ body {
     font-family: lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 32px;
 }
+
+.background {
+    position:fixed;
+    top:0px;
+}
+
 #GameField {
     z-index: 3;
     display: block;
