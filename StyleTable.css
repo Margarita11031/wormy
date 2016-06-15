@@ -1,16 +1,14 @@
 body {
     background-image: url(img/backgr.jpg);
     background-repeat: no-repeat;
-    background-size: 100% auto;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+
     margin: 0;
     overflow: hidden;
     font-family: lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 32px;
-}
-
-.background {
-    position:fixed;
-    top:0px;
 }
 
 #GameField {
