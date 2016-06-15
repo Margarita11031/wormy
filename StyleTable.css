@@ -3,7 +3,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: top;
-    background-size: cover;
+    background-size: 100% auto;
     margin: 0;
     overflow: hidden;
     font-family: lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -43,7 +43,7 @@ body {
 
 #StatusInfo button {
     text-align: center;
-    font-size: 30pt;
+    font-size: 24pt;
     padding: 10px;
     margin: 5px;
     height: 15%;
