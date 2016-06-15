@@ -2,7 +2,8 @@ body {
     background-image: url(img/backgr.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center;
+    background-position: top;
+    background-size: cover;
     margin: 0;
     overflow: hidden;
     font-family: lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
