@@ -85,10 +85,10 @@ function CloseWind() {
 function ShareResults_void() {
     document.getElementById("customMessage").innerHTML = "<p>Length: " + objWorm.tblPos.length + " pieces</p>" +
         "<p>Speed:" + Statistics.intSpeed + " px/sec</p>" +
-        "<p id='messageText'>Share you result</p>" +
-        "<img id='facebook' src='img/icon_facebook.png' width='12%' alt='facebook' onclick='ShareOnFacebook_void()'/>" + " " +
-        "<img id='twitter' src='img/icon_twitter.png' width='12%' alt='twitter'/>" + " " +
-        "<img id='google' src='img/icon_google.png' width='12%' alt='google'/>";
+        "<p id='messageText'>Share your result</p>" +
+        "<img class='icon' id='facebook' src='img/icon_facebook.png' alt='facebook' onclick='ShareOnFacebook_void()'/>" + " " +
+        "<img class='icon' id='twitter' src='img/icon_twitter.png' alt='twitter'/>" + " " +
+        "<img class='icon' id='google' src='img/icon_google.png' alt='google'/>";
 
 }
 
